@@ -3,7 +3,10 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import PostRouters from "./routes/post.js";
+import UserRouters from "./routes/users.js";
+
 const app = express();
+app.use(cors());
 
 const uri =
   "mongodb+srv://jksa_1234:jksa_1234_jksa@cluster0.d5s4h0b.mongodb.net/";
@@ -11,6 +14,7 @@ const uri =
 app.use(bodyParser.json({ limit: "30mb", extends: true }));
 // app.use(bodyParser.urlencoded({ limit: "30mb", extends: true }));
 app.use("/api/posts", PostRouters);
+app.use("/api/users", UserRouters);
 mongoose
   .connect(uri)
   .then(() =>
